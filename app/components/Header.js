@@ -17,7 +17,7 @@ const Header = () => {
                 className="form-control form-control-sm input-dark"
                 type="text"
                 placeholder="Username"
-                autocomplete="off"
+                autoComplete="off"
               />
             </div>
             <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
