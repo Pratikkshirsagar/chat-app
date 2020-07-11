@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useImmerReducer } from 'use-immer';
 
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
@@ -24,21 +25,22 @@ function Main() {
     loggedIn: Boolean(localStorage.getItem('complexappToken')),
     flashMessage: [],
   };
-  function ourReducer(state, action) {
+
+  function ourReducer(draft, action) {
     switch (action.type) {
       case 'login':
-        return { loggedIn: true, flashMessage: state.flashMessage };
+        draft.loggedIn = true;
+        return;
       case 'logout':
-        return { loggedIn: false, flashMessage: state.flashMessage };
+        draft.loggedIn = false;
+        return;
       case 'flashMessage':
-        return {
-          loggedIn: state.loggedIn,
-          flashMessage: state.flashMessage.concat(action.value),
-        };
+        draft.flashMessage.push(action.value);
+        return;
     }
   }
 
-  const [state, dispatch] = useReducer(ourReducer, initialState);
+  const [state, dispatch] = useImmerReducer(ourReducer, initialState);
 
   return (
     <StateContext.Provider value={state}>
