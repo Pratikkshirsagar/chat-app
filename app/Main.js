@@ -46,7 +46,7 @@ function Main() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-          <FlashMessages messages={state.flashMessages} />
+          <FlashMessages messages={state.flashMessage} />
           <Header />
           <Switch>
             <Route path="/" exact>
