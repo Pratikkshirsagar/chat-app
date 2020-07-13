@@ -17,6 +17,7 @@ import CreatePost from './components/CreatePost';
 import ViewSinglePost from './components/ViewSinglePost';
 import Axios from 'axios';
 import FlashMessages from './components/FlashMessages';
+import Profile from './components/Profile';
 
 Axios.defaults.baseURL = 'http://localhost:8080';
 
@@ -81,6 +82,9 @@ function Main() {
             </Route>
             <Route path="/terms">
               <Terms />
+            </Route>
+            <Route path="/profile/:username">
+              <Profile />
             </Route>
           </Switch>
           <Footer />
